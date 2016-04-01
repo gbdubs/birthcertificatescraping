@@ -8,17 +8,11 @@ function [BW,maskedImage] = segmentImage(im)
 %----------------------------------------------------
 
 
-% Initialize segmentation with Otsu's threshold
-level = graythresh(im);
-mask = im2bw(im,level);
-
-% Fill holes
-BW = imfill(mask, 'holes');
-
-% Filter components by area
-BW = bwareafilt(BW, [3713776 Inf]);
+% Initialize segmentation with threshold
+mask = im<130;
+BW = mask;
 
 % Form masked image from input image and segmented image.
-maskedImage = im;
+maskedImage = 255 - im;
 maskedImage(~BW) = 0;
 end

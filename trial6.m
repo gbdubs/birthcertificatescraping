@@ -1,7 +1,6 @@
 fixed = imread('testset/d.jpg');
 moving = imread('testset/k.jpg');
 
-
 tformEstimate = imregcorr(moving,fixed);
 
 Rfixed = imref2d(size(fixed));

@@ -1,0 +1,7 @@
+function [ txt ] = doOCR( im )
+    ocrResult = ocr(wiener2(imadjust(im)), ... 
+        'Language', ...
+         {'ocrtraining/results/OneThruEighteen/tessdata/OneThruEighteen.traineddata'});
+    txt = ocrResult.Text(ocrResult.CharacterConfidences < 1);
+end
+

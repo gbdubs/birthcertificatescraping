@@ -1,6 +1,6 @@
-allSubImages = cell(1, 8 * numel(getFieldNames()));
+allSubImages = cell(1, 17 * numel(getFieldNames()));
 index = 1;
-for i = 1 : 8
+for i = 1 : 17
     map = findAllFormFields(imread(['images/',num2str(i),'.jpg']));
     for fieldName = getFieldNames()
         fieldNameStr = cell2mat(fieldName);

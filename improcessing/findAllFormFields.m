@@ -20,10 +20,10 @@ function [ formFieldToImgMap ] = findAllFormFields( cert )
         fieldNameStr = cell2mat(fieldName);
         boundingPts = blankCertPoints(fieldNameStr);
         xFormedBPts = xForm.transformPointsForward(boundingPts);
+        xFormedBPts = round(xFormedBPts / resizeRatio);
         mask = poly2mask(...
             xFormedBPts(:, 1), xFormedBPts(:, 2), ...
-            size(cert,1), size(cert,2));
-        mask = imresize(mask, 1 / resizeRatio);
+            size(fullCert,1), size(fullCert,2));
         xRange = sum(mask, 2) > 0;
         yRange = sum(mask, 1) > 0;
         mask = mask(xRange, yRange);

@@ -1,0 +1,4 @@
+function [ fieldNames ] = getFieldNames( )
+    fieldNames = {'County', 'Town', 'ChildName', 'Sex', 'Twin'};
+end
+

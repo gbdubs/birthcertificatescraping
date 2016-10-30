@@ -1,15 +1,15 @@
-function [ formFieldToImgMap ] = findAllFormFields( ...
-blankCertPoints, ...
-fieldNames, ...
-cert, ...
-blankCert, ...
-resizeRatio)
+function [ formFieldToImgMap ] = findAllFormFields( cert )
+    blankCert = getBlankCert();
+    fieldNames = getFieldNames();
+    resizeRatio = getResizeRatio();
+    blankCertPoints = getBlankCertFieldMap();
+    
     fullCert = maskOutBlackBackground(cert);
 
     formFieldToImgMap = containers.Map;
 
     cert = imresize(fullCert, resizeRatio);
-    blankCert = imresize(maskOutBlackBackground(blankCert), resizeRatio);
+    blankCert = imresize(blankCert, resizeRatio);
     xForm = imregcorr(blankCert, cert);
     
     movingReg = imwarp(blankCert,xForm,'FillValues', 255, 'OutputView',imref2d(size(cert)));

@@ -1,0 +1,19 @@
+function [ fieldNameToFieldStringMap ] = extractFormValues( imageName )
+    fieldNames = getFieldNames();
+    formFieldToImgMap = findAllFormFields( ...
+            getBlankCertFieldMap(), ...
+            fieldNames, ...
+            imread(['images/',imageName]), ...
+            imread('constants/blank-cert.jpg'), ...
+            getResizeRatio());
+    
+    fieldNameToFieldStringMap = containers.Map;
+    
+    for fieldName = fieldNames
+        fieldNameStr = cell2mat(fieldName);
+        fieldNameToFieldStringMap(fieldNameStr) = ...
+            doOCR(formFieldToImgMap(fieldNameStr));
+    end
+    
+end
+

@@ -1,7 +1,7 @@
 certificate = maskOutBlackBackground(imread('samples/1.jpg'));
-%downSampledCertificate = imresize(certificate, .5);
+certificate = imresize(certificate, .5);
 blankTemplateCertificate = maskOutBlackBackground(imread('blank-cert.jpg'));
-%downSampledBlankTemplate = imresize(blankTemplateCertificate, .5);
+blankTemplateCertificate = imresize(blankTemplateCertificate, .5);
 
 tformEstimate = imregcorr(blankTemplateCertificate,certificate);
 
